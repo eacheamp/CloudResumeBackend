@@ -20,6 +20,7 @@ terraform {
     bucket  = "eacheampongterraform"
     key     = "cloud_resume"
     region  = "us-east-1"
+    profile = "default"
   }
 }
 
@@ -27,3 +28,5 @@ terraform {
 provider "aws" {
   region                    = "us-east-1"
 }
+
+
