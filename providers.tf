@@ -16,15 +16,6 @@ terraform {
     }
 }
 
-terraform {
-  backend "s3" {
-    bucket  = "eacheampongterraform"
-    key     = "cloud_resume"
-    region  = "us-east-1"
-    profile = "default"
-  }
-}
-
 # Configure the AWS Provider
 provider "aws" {
   region                    = "us-east-1"
