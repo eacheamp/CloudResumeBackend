@@ -7,7 +7,7 @@ terraform {
       }
       cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 3.0"
+      version = "3.33.0"
       }
       archive = {
         source  = "hashicorp/archive"
