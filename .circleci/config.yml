@@ -1,6 +1,4 @@
 version: '2.1'
-orbs:
-  terraform: circleci/terraform@3.1
 
 workflows:
   deploy_infra:
@@ -8,15 +6,20 @@ workflows:
       - terraform/validate:
           checkout: true
           context: terraform
+
       - decode_tfvars:
-          executor: terraform/default
+          docker:
+            - image: circleci/python:3.7
           steps:
             - run:
                 name: Decode and store tfvars
                 command: |
                   echo "$AWS_CLOUDRESUMEBACKEND_TFVARS" | base64 --decode > $HOME/terraform.tfvars
-            - attach_workspace:
-                at: $HOME
+            - persist_to_workspace:
+                root: $HOME
+                paths:
+                  - terraform.tfvars
+
       - terraform/plan:
           var_file: terraform.tfvars
           checkout: true
