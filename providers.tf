@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">=1.4.1"
+  required_version = ">=0.13"
     required_providers {
       aws = {
         source  = "hashicorp/aws"
@@ -7,7 +7,7 @@ terraform {
       }
       cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 3.0"
+      version = "3.33.0"
       }
       archive = {
         source  = "hashicorp/archive"
