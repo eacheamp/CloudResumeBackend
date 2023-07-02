@@ -1,14 +1,24 @@
 version: '2.1'
 orbs:
   terraform: circleci/terraform@3.1
+
 workflows:
   deploy_infra:
     jobs:
       - terraform/validate:
           checkout: true
           context: terraform
+      - decode_tfvars:
+          executor: terraform/default
+          steps:
+            - run:
+                name: Decode and store tfvars
+                command: |
+                  echo "$AWS_CLOUDRESUMEBACKEND_TFVARS" | base64 --decode > $HOME/terraform.tfvars
+            - attach_workspace:
+                at: $HOME
       - terraform/plan:
-          var_file: AWS_CLOUDRESUMEBACKEND_TFVARS
+          var_file: terraform.tfvars
           checkout: true
           context: terraform
           persist-workspace: true
@@ -17,4 +27,3 @@ workflows:
               only: main
           requires:
             - terraform/validate
- 
