@@ -23,7 +23,9 @@ jobs:
 workflows:
   test-deploy:
     jobs:
-      - decode_tfvars
+      - decode_tfvars:
+          context:
+            - terraform
       
       
       
