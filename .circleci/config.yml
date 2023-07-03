@@ -23,16 +23,16 @@ jobs:
           root: .
           name: Save to workspace
           paths:
-            - tf.tfvars
+            - terraform.tfvars
 
       - terraform/validate:
           path: .
       - terraform/init:
           path: .
       - attach_workspace:
-          at: $HOME/tf
+          at: .
       - terraform/plan:
-          var_file: $HOME/tf/terraform.tfvars
+          var_file: $HOME/terraform.tfvars
    
       
 workflows:
