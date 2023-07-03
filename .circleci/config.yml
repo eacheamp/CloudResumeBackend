@@ -1,3 +1,4 @@
+
 version: '2.1'
 orbs:
   terraform: circleci/terraform@3.1
@@ -18,7 +19,13 @@ jobs:
             cat $HOME/terraform.tfvars
           name: print variable
           context: terraform
-
+      - terraform/validate:
+          path: .
+      - terraform/init:
+          path: .
+      - terraform/plan:
+          var_file: $HOME/terraform.tfvars
+   
       
 workflows:
   test-deploy:
@@ -28,14 +35,4 @@ workflows:
             - terraform
       
       
-      
-      # - attach_workspace:
-      #     at: $HOME
-      # - terraform/validate:
-      #     checkout: true
-      #     context: terraform
-      # - terraform/plan:
-      #     var_file: terraform.tfvars
-      #     checkout: true
-      #     context: terraform
-      #     persist-workspace: true
+    
