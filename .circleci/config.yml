@@ -6,8 +6,6 @@ jobs:
   # Decode the tfvars environment variable and save to workspace
   decode_tfvars:
     executor: terraform/default
-      context:
-        - terraform
     steps:
       - checkout
       - run:
