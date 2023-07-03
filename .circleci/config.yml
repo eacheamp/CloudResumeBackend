@@ -1,41 +1,39 @@
 version: '2.1'
+orbs:
+  terraform: circleci/terraform@3.1
 
+jobs:
+  # Decode the tfvars environment variable and save to workspace
+  decode_tfvars:
+    executor: terraform/default
+      context:
+        - terraform
+    steps:
+      - checkout
+      - run:
+          command: >-
+            echo "$AWS_CLOUDRESUMEBACKEND_TFVARS" | base64 --decode > $HOME/terraform.tfvars
+          name: Create terraform.tfvars variable file
+          context: terraform
+      - run:
+          command: >-
+            echo $HOME/terraform.tfvars
+
+      
 workflows:
-  deploy_infra:
+  test-deploy:
     jobs:
-      - decode_tfvars:
-          docker:
-            - image: circleci/python:3.7
-          steps:
-            - run:
-                name: Decode and store tfvars
-                command: |
-                  echo "$AWS_CLOUDRESUMEBACKEND_TFVARS" | base64 --decode > $HOME/terraform.tfvars
-            - persist_to_workspace:
-                root: $HOME
-                paths:
-                  - terraform.tfvars
-
-      - terraform/validate:
-          docker:
-            - image: hashicorp/terraform:1.0.0
-          steps:
-            - attach_workspace:
-                at: $HOME
-            - run:
-                name: Validate Terraform configuration
-                command: |
-                  terraform init
-                  terraform validate
-
-      - terraform/plan:
-          docker:
-            - image: hashicorp/terraform:1.0.0
-          steps:
-            - attach_workspace:
-                at: $HOME
-            - run:
-                name: Plan Terraform changes
-                command: |
-                  terraform init
-                  terraform plan -var-file=terraform.tfvars
+      - decode_tfvars
+      
+      
+      
+      # - attach_workspace:
+      #     at: $HOME
+      # - terraform/validate:
+      #     checkout: true
+      #     context: terraform
+      # - terraform/plan:
+      #     var_file: terraform.tfvars
+      #     checkout: true
+      #     context: terraform
+      #     persist-workspace: true
