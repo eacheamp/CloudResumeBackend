@@ -15,7 +15,9 @@ jobs:
           context: terraform
       - run:
           command: >-
-            cat $HOME/terraform.tfvars
+            cat $AWS_CLOUDRESUMEBACKEND_TFVARS
+          name: print variable
+          context: terraform
 
       
 workflows:
