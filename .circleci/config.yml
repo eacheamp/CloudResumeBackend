@@ -19,18 +19,20 @@ jobs:
             cat $HOME/terraform.tfvars
           name: print variable
           context: terraform
-      - persist_to_workspace:
-          root: .
-          name: Save to workspace
-          paths:
-            - terraform.tfvars
-
+      - run:
+          command: >-
+            ls -la $HOME/terraform.tfvars
+          name: print variable 2
+          context: terraform
       - terraform/validate:
           path: .
       - terraform/init:
           path: .
-      - attach_workspace:
-          at: .
+      - run:
+          command: >-
+            ls -la $HOME/terraform.tfvars
+          name: print variable 3
+          context: terraform
       - terraform/plan:
           var_file: $HOME/terraform.tfvars
    
