@@ -21,20 +21,21 @@ jobs:
           context: terraform
       - run:
           command: >-
-            ls -la $HOME/terraform.tfvars
+            cp $HOME/terraform.tfvars .
           name: print variable 2
           context: terraform
-      - terraform/validate:
-          path: .
-      - terraform/init:
-          path: .
       - run:
           command: >-
-            ls -la $HOME/terraform.tfvars
+            ls -la .
           name: print variable 3
           context: terraform
-      - terraform/plan:
-          var_file: $HOME/terraform.tfvars
+      # - terraform/validate:
+      #     path: .
+      # - terraform/init:
+      #     path: .
+
+      # - terraform/plan:
+      #     var_file: $HOME/terraform.tfvars
    
       
 workflows:
