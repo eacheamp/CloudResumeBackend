@@ -20,7 +20,8 @@ jobs:
           name: print variable
           context: terraform
       - persist_to_workspace:
-          root: $HOME
+          root: .
+          name: Save to workspace
           paths:
             - tf.tfvars
 
