@@ -15,7 +15,7 @@ jobs:
           context: terraform
       - run:
           command: >-
-            ls -la
+            ls -la $HOME/terraform.tfvars
 
       
 workflows:
