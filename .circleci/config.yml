@@ -29,13 +29,12 @@ jobs:
             ls -la .
           name: print variable 3
           context: terraform
-      # - terraform/validate:
-      #     path: .
-      # - terraform/init:
-      #     path: .
-
-      # - terraform/plan:
-      #     var_file: $HOME/terraform.tfvars
+      - terraform/validate:
+          path: .
+      - terraform/init:
+          path: .
+      - terraform/plan:
+          var_file: terraform.tfvars
    
       
 workflows:
