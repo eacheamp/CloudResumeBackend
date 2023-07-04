@@ -33,7 +33,7 @@ variable "api_gateway_region" {
 }
 variable "CLOUDFLARE_API_TOKEN" {
   description = "Cloudflare API token stored in CircleCI context"
-  default     = "terraform/CLOUDFLARE_API_TOKEN"
+  default     = var.CLOUDFLARE_CONTEXT_VAR
 }
 # variable "lambda_function_name" {
 #   type        = string
