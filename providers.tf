@@ -5,10 +5,10 @@ terraform {
         source  = "hashicorp/aws"
         version = ">=3.75.1"
       }
-      # cloudflare = {
-      # source  = "cloudflare/cloudflare"
-      # version = "3.33.0"
-      # }
+      cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "3.33.0"
+      }
       archive = {
         source  = "hashicorp/archive"
         version = "~>2.0.0"
@@ -30,4 +30,6 @@ provider "aws" {
   region                    = "us-east-1"
 }
 
-
+provider "cloudflare" {
+    api_token   = var.cloudflare_api_token
+}
