@@ -1,6 +1,3 @@
-locals{
-    CLOUDFLARE_API_TOKEN = var.CLOUDFLARE_CONTEXT_VAR
-}
 terraform {
   required_version = ">=0.13"
     required_providers {
