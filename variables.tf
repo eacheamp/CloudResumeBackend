@@ -31,7 +31,7 @@ variable "api_gateway_region" {
   description = "The region in which to create/manage resources"
   default     = "us-east-1"
 }
-variable "cloudflare_api_token" {
+variable "CLOUDFLARE_API_TOKEN" {
   description = "Cloudflare API token stored in CircleCI context"
   default     = "terraform/CLOUDFLARE_API_TOKEN"
 }
