@@ -16,25 +16,15 @@ jobs:
           context: terraform
       - run:
           command: >-
-            cat $HOME/terraform.tfvars
-          name: print variable
-          context: terraform
-      - run:
-          command: >-
-            cp $HOME/terraform.tfvars .
-          name: print variable 2
-          context: terraform
-      - run:
-          command: >-
-            ls -la .
-          name: print variable 3
+             echo $AWS_CLOUDRESUMEBACKEND_TFVARS
+          name: print cloudflareapi
           context: terraform
       - terraform/validate:
           path: .
-      - terraform/init:
-          path: .
-      - terraform/plan:
-          var_file: terraform.tfvars
+      # - terraform/init:
+      #     path: .
+      # - terraform/plan:
+      #     var_file: terraform.tfvars
    
       
 workflows:
