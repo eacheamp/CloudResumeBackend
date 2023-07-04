@@ -21,7 +21,7 @@ jobs:
       - terraform/init:
           path: .
       - terraform/plan:
-          var_file: terraform.tfvars
+          var_file: $HOME/terraform.tfvars
    
       
 workflows:
