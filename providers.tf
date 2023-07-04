@@ -1,3 +1,6 @@
+locals{
+    CLOUDFLARE_API_TOKEN = var.CLOUDFLARE_CONTEXT_VAR
+}
 terraform {
   required_version = ">=0.13"
     required_providers {
@@ -31,5 +34,5 @@ provider "aws" {
 }
 
 provider "cloudflare" {
-    api_token   = var.CLOUDFLARE_API_TOKEN
+    api_token   = local.CLOUDFLARE_API_TOKEN
 }

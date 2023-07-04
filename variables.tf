@@ -33,7 +33,6 @@ variable "api_gateway_region" {
 }
 variable "CLOUDFLARE_API_TOKEN" {
   description = "Cloudflare API token stored in CircleCI context"
-  default     = var.CLOUDFLARE_CONTEXT_VAR
 }
 # variable "lambda_function_name" {
 #   type        = string
