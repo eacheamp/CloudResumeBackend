@@ -16,7 +16,7 @@ jobs:
           context: terraform
       - run:
           command: >-
-             echo $AWS_CLOUDRESUMEBACKEND_TFVARS
+             echo $CLOUDFLARE_API_TOKEN
           name: print cloudflareapi
           context: terraform
       - terraform/validate:
