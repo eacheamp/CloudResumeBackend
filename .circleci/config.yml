@@ -27,7 +27,7 @@ jobs:
       - terraform/init:
           path: .
       - terraform/plan:
-          path: .
+          path: ..
           var_file: terraform.tfvars
    
       
