@@ -20,7 +20,7 @@ jobs:
           command: >-
             ls -la
           name: Find tfvars file
-          path: .
+          path: ..
           context: terraform
       # - terraform/validate:
       #     path: .
