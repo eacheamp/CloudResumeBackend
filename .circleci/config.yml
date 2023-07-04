@@ -7,7 +7,7 @@ jobs:
   # Decode the tfvars environment variable and save to workspace
   decode_tfvars:
     environment:
-      CLOUDFLARE_CONTEXT_VAR: terraform/CLOUDFLARE_API_TOKEN
+      CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
     executor: terraform/default
     steps:
       - checkout

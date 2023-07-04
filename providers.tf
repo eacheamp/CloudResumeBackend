@@ -34,5 +34,5 @@ provider "aws" {
 }
 
 provider "cloudflare" {
-    api_token   = local.CLOUDFLARE_API_TOKEN
+    api_token   = "${var.cloudflare_api_token}"
 }
