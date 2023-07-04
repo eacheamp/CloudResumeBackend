@@ -35,6 +35,5 @@ terraform.rc
 
 ## Lambda 
 VisitorCount_lambda_function_payload.zip
-VisitorCount.py
 *.zip
 *.py

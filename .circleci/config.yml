@@ -1,20 +1,39 @@
+
 version: '2.1'
 orbs:
   terraform: circleci/terraform@3.1
-workflows:
-  deploy_infra:
-    jobs:
+
+jobs:
+  # Decode the tfvars environment variable and save to workspace
+  decode_tfvars:
+    environment:
+      CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
+    executor: terraform/default
+    steps:
+      - checkout
+      - run:
+          command: >-
+            echo $AWS_CLOUDRESUMEBACKEND_TFVARS | base64 -d > $HOME/terraform.tfvars
+          name: Create terraform.tfvars variable file
+          context: terraform
+      - run:
+          command: >-
+            ls -la
+          name: Find tfvars file
       - terraform/validate:
-          checkout: true
-          context: terraform
+          path: .
+      - terraform/init:
+          path: .
       - terraform/plan:
-          var_file: AWS_CLOUDRESUMEBACKEND_TFVARS
-          checkout: true
-          context: terraform
-          persist-workspace: true
-          filters:
-            branches:
-              only: main
-          requires:
-            - terraform/validate
- 
+          var_file: ./terraform.tfvars
+   
+      
+workflows:
+  test-deploy:
+    jobs:
+      - decode_tfvars:
+          context:
+            - terraform
+      
+      
+    

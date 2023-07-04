@@ -12,6 +12,7 @@ output "dynamoDBLambdaPolicyarn" {
 
 output "db_table" {
     value = aws_dynamodb_table.site-stats-dynamodb-table
+    sensitive = true
 }
 
 output "http_api_url" {
