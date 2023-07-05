@@ -16,25 +16,21 @@ jobs:
             echo $AWS_CLOUDRESUMEBACKEND_TFVARS | base64 -d > $HOME/terraform.tfvars
           name: Create terraform.tfvars variable file
           context: terraform
-      - run:
-          command: >-
-            ls -la
-          name: Find tfvars file
+      # - run:
+      #     command: >-
+      #       ls -la
+      #     name: Find tfvars file
       - run:
           command: >-
             cp $HOME/terraform.tfvars .
           name: Cpy tfvars file to project directory
-      - run:
-          command: >-
-            ls -la
-          name: Find tfvars file
+      - terraform/validate:
           path: .
-      # - terraform/validate:
-      #     path: .
-      # - terraform/init:
-      #     path: .
-      # - terraform/plan:
-      #     var_file: ./terraform.tfvars
+      - terraform/init:
+          path: .
+      - terraform/plan:
+          var_file: terraform.tfvars
+          path: .
    
       
 workflows:
