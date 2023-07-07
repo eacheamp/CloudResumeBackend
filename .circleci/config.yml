@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run:
           command: >-
-            echo $AWS_CLOUDRESUMEBACKEND_TFVARS | base64 -d > $HOME/terraform.tfvars
+            echo $AWS_CLOUDRESUME_TERRAFORMTFVARS_FILE | base64 -d > $HOME/terraform.tfvars
           name: Create terraform.tfvars variable file
           context: terraform
       # - run:
