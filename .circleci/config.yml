@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   # Decode the tfvars environment variable and save to workspace
-  decode_tfvars:
+  deploy_backend:
     environment:
       CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
     executor: terraform/default
@@ -31,12 +31,20 @@ jobs:
       - terraform/plan:
           var_file: terraform.tfvars
           path: .
+      - run:
+          name: Store Artifact of api endpoint
+          command: |
+            terraform output -raw http_api_url
+  
+      # - terraform/apply:
+      #     var_file: terraform.tfvars
+      #     path: .
    
       
 workflows:
   test-deploy:
     jobs:
-      - decode_tfvars:
+      - deploy_backend:
           context:
             - terraform
       
