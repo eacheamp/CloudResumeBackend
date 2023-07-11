@@ -3,7 +3,7 @@ resource "aws_apigatewayv2_api" "http_api"{
     protocol_type = "HTTP"
 
     cors_configuration {
-      allow_origins     = ["https://${var.domain_name}"]
+      allow_origins     = ["https://eacheampong.work"]
       allow_credentials = "true" 
       allow_headers     = ["*"]
       allow_methods     = ["*"]
