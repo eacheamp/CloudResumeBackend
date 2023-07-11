@@ -22,19 +22,19 @@ resource "aws_dynamodb_table" "site-stats-dynamodb-table" {
   }
 }
 
-resource "aws_dynamodb_table_item" "site_stat_item_1" {
-  table_name  = aws_dynamodb_table.site-stats-dynamodb-table.name
-  hash_key    = aws_dynamodb_table.site-stats-dynamodb-table.hash_key
-  # range_key   = aws_dynamodb_table.site-stats-dynamodb-table.range_key
+# resource "aws_dynamodb_table_item" "site_stat_item_1" {
+#   table_name  = aws_dynamodb_table.site-stats-dynamodb-table.name
+#   hash_key    = aws_dynamodb_table.site-stats-dynamodb-table.hash_key
+#   # range_key   = aws_dynamodb_table.site-stats-dynamodb-table.range_key
 
-  item = <<ITEM
-  {
-    "siteStat_id" : {
-      "S": "Count"
-        },
-    "visitorCount" : {
-      "N": "1"
-        }
-  }
-  ITEM
-}
+#   item = <<ITEM
+#   {
+#     "siteStat_id" : {
+#       "S": "Count"
+#         },
+#     "visitorCount" : {
+#       "N": "1"
+#         }
+#   }
+#   ITEM
+# }
