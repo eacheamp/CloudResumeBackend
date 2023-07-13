@@ -9,13 +9,13 @@ def handler (e, context):
     print(e)
     # -> get item - get number of visitors
     response    = table.get_item(
-        Key={"siteStat_id":"siteStat_val"} 
+        Key={"siteStat_id":"Count"} 
         )
     table_item = response["Item"]   
     # update table item
     table.update_item(
-            Key={"siteStat_id":"siteStat_val"},
-            UpdateExpression="set Visits = Visits + :n",
+            Key={"siteStat_id":"Count"},
+            UpdateExpression="set visitorCount = visitorCount + :n",
             ExpressionAttributeValues={
                 ":n":1,
             },
@@ -30,4 +30,4 @@ def handler (e, context):
             "Access-Control-Allow-Methods": "OPTIONS"
             },
             "statusCode": 200,
-            "body": str(table_item["Visits"])} or {"statusCode": 404, "body": "Item not found"}
+            "body": str(table_item["visitorCount"])} or {"statusCode": 404, "body": "Item not found"}
