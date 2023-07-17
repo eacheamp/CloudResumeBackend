@@ -17,19 +17,19 @@ The challange lays out 16 steps for completion. This repo CloudResumeBackend wil
 
  7. Javascript 
 
-    Created a function that fetches the api endpoint inteegrated with the lambada function 
+    Created a function that fetches the api endpoint, performs a `POST` on the endpoint with `allowed headers` only allowing actions from my cloud resume site.
 
  8. Database 
     
-    DynamoDB
+    A DynamoDB table that has a `Site Key`:`siteStat_id` and `Atrribute`:`visitorCount` that keeps "Count" of the Number of Visitors to the site. It is billed Pay per request(API call) to forgo the need for provisioning.
 
  9. API 
     
-    API Gateway
+    Used API Gateway httpV2 to integrate my Lambda so whenever the endpoint is "fetched" it invokes the Lambda to update the DynamoDb table.
     
  10.  Python
     
-    Used Python to build the Lambda functions in charge of counting site visitors.
+    Used Python to build the Lambda functions in charge of counting site visitors; using boto3 clients to interact with dynamodb.
 
 11. Tests
 
