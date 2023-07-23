@@ -11,6 +11,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Pip Install Boto3
+          command: |
+            pip install boto3
+      - run:
           name: Run Python Unit Tests
           command: |
             python -m unittest discover tests/
@@ -56,9 +60,9 @@ workflows:
       - unittests:
           context:
             - terraform
-      - deploy_backend:
-          context:
-            - terraform
+      # - deploy_backend:
+      #     context:
+      #       - terraform
       
       
     
