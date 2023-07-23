@@ -2,9 +2,18 @@
 version: '2.1'
 orbs:
   terraform: circleci/terraform@3.1
+  python: circleci/python@2.0.3
 
 jobs:
-  # Decode the tfvars environment variable and save to workspace
+  unittests:
+    environment:
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          name: Run Python Unit Tests
+          command: |
+            python -m unittest discover tests/
   deploy_backend:
     environment:
       CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
@@ -12,6 +21,7 @@ jobs:
     steps:
       - checkout
       - run:
+          # Decode the tfvars environment variable and save to workspace
           command: >-
             echo $AWS_CLOUDRESUME_TERRAFORMTFVARS_FILE | base64 -d > $HOME/terraform.tfvars
           name: Create terraform.tfvars variable file
@@ -43,6 +53,9 @@ jobs:
 workflows:
   test-deploy:
     jobs:
+      - unittests:
+          context:
+            - terraform
       - deploy_backend:
           context:
             - terraform
