@@ -60,9 +60,9 @@ workflows:
       - unittests:
           context:
             - terraform
-      # - deploy_backend:
-      #     context:
-      #       - terraform
+      - deploy_backend:
+          context:
+            - terraform
       
       
     

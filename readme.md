@@ -32,6 +32,7 @@ The challange lays out 16 steps for completion. This repo CloudResumeBackend wil
     Used Python to build the Lambda functions in charge of counting site visitors; using boto3 clients to interact with dynamodb.
 
 11. Tests
+    Python Unitests to make sure the lambda is selecting the correct dynamodb key and it is a positive number.
 
 12. Infrastructure as Code
 
@@ -41,9 +42,11 @@ The challange lays out 16 steps for completion. This repo CloudResumeBackend wil
 
     Hosted in github
 
-14. ###### CI/CD [Backend](https://github.com/eacheamp/CloudResumeBackend)
+14. CI/CD [circleci config.yml](https://github.com/eacheamp/CloudResumeFrontend/tree/main/.circleci)
+    
+    CircleCI config to load `terraform.tfvars` variables and run `terraform` commands to deploy the resources. First runs unittests to check the lambda site visitor counter.
 
-15. CI/CD [circleci config.yml](https://github.com/eacheamp/CloudResumeFrontend/tree/main/.circleci)
+15. ###### CI/CD [circleci config.yml](https://github.com/eacheamp/CloudResumeFrontend/tree/main/.circleci)
 
     CircleCI config to load `terraform.tfvars` variables and run `terraform` commands to deploy the resources.
 
