@@ -27,12 +27,13 @@ The challange lays out 16 steps for completion. This repo CloudResumeBackend wil
     
     Used API Gateway httpV2 to integrate my Lambda so whenever the endpoint is "fetched" it invokes the Lambda to update the DynamoDb table.
     
- 10.  Python
-    
-    Used Python to build the Lambda functions in charge of counting site visitors; using boto3 clients to interact with dynamodb.
+ 10. Python
+
+        Used Python to build the Lambda functions in charge of counting site visitors; using boto3 clients to interact with dynamodb.
 
 11. Tests
-    Python Unitests to make sure the lambda is selecting the correct dynamodb key and it is a positive number.
+    
+    Python Unittests to make sure the lambda is selecting the correct dynamodb key and it is a positive number.
 
 12. Infrastructure as Code
 
